@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>		
+		<meta charset="UTF-8">
+		<title>Rocket - Captação Candidatos</title>
+		
+		<!-- Adicionando JQuery -->
+   		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        
+        <!-- Campo Data -->    
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+        <link src="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"></script>
+		
+		<!--Import Google Icon Font-->
+    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    	
+        <!-- Compiled and minified CSS -->
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    	<!-- Compiled and minified JavaScript -->
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <style type="text/css">
+        	table.striped>tbody>tr:nth-child(odd) {
+        		background-color: rgba(158, 154, 154, 0.5);
+        	}
+        	form input[type=submit] {
+        		color: white;
+        	}
+        	table {
+        		width: 100%;        		
+        	}
+        	table td, table th {
+        		border: 1px solid gray; 
+        	}
+        	table th {
+        		background: #eee;
+        	}
+        </style>
+	</head>
+	<body>
+
+        <h3>Rocket RedeMob Consórcio - Captação do Candidato</h3><br />
+        <a th:href="@{/index}"><span style="font-size: large; font-weight: 600">Voltar ao Menu Principal</span></a><br/><br/>
+        <fieldset>
+            <legend> Captação do Candidato </legend>
+            <div class="row">
+
+                <br />
+                <div th:each = "m : ${msg}">
+                    <span th:text="${m}" style="color: red"></span>
+                </div>
+                <br />
+
+                <form id="formPessoa" action="salvaPessoa" method="post" th:object="${pessoa}" class="col s12" enctype="multipart/form-data">
+                    <input type="hidden" th:field="*{id}"/>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="nomeCompletoCandidato" class="active">Nome Completo do Candidato</label>
+                            <input required placeholder="Informe seu nome completo" name="nomeCompletoCandidato" th:field="*{nomeCompletoCandidato}" id="nomeCompletoCandidato" class="validate" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="nomeCompletoMae" class="active">Nome Completo da Mãe</label>
+                            <input required placeholder="Informe o nome completo da sua mãe" name="nomeCompletoMae" th:field="*{nomeCompletoMae}" id="nomeCompletoMae" class="validate" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="cpf" class="active">CPF</label>
+                            <input required placeholder="Informe seu CPF" name="cpf" th:field="*{cpf}" id="cpf" class="validate" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="dataNascimento" class="active">Data Nascimento</label>
+                            <input required type="date" id="dataNascimento" th:field="*{dataNascimento}" name="dataNascimento" placeholder="Data de Nascimento" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="fileRosto" class="active">Foto do Rosto (Identificação Biométrica)</label>
+                            <input required type="file" id="fileRosto" name="fileRosto" class="file-field input-field" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="senha" class="active">Senha</label>
+                            <input type="password" minlength="8" maxlength="20" required placeholder="Informe sua senha" name="cpf" th:field="*{senha}" id="senha" class="validate" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="fileFrenteIdentidade" class="active">Foto da Frente (Documento de Identificação Válido)</label>
+                            <input required type="file" id="fileFrenteIdentidade" name="fileFrenteIdentidade" class="file-field input-field" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="fileVersoIdentidade" class="active">Foto do Verso (Documento de Identificação Válido)</label>
+                            <input required type="file" id="fileVersoIdentidade" name="fileVersoIdentidade" class="file-field input-field" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="fileFrenteMoradia" class="active">Foto da Frente (Documento de Comprovação de Moradia)</label>
+                            <input required type="file" id="fileFrenteMoradia" name="fileFrenteMoradia" class="file-field input-field" />
+                        </div>
+                        <div class="input-field col s6">
+                            <label for="fileVersoMoradia" class="active">Foto do Verso (Documento de Comprovação de Moradia)</label>
+                            <input required type="file" id="fileVersoMoradia" name="fileVersoMoradia" class="file-field input-field" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="profissao" class="active">Município</label>
+                            <select class="browser-default" th:field="*{municipio}" id="profissao">
+                                <option th:each="m : ${municipios}" th:value="${m.id}" th:text="${m.nome}" />
+                                <option value="0">OUTROS</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input class="waves-effect waves-light btn" type="submit" value="Salvar" />
+                            <button class="waves-effect waves-light btn" onclick="document.getElementById('formPessoa').reset();">Novo</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+        <!-- Adicionando Javascript -->
+	    <script type="text/javascript" >
+            $('#cpf').mask('000.000.000-00', {reverse: true});
+	        $(document).ready(function() {
+	        	$('#dataNascimento').datepicker({
+	        		showOthermonths:true,
+	        		format: 'yyyy-mm-dd'
+	        	});
+	        });
+	    </script>
+	</body>
+</html>

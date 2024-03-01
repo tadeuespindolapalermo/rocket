@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rocket RedeMob Consorcio</title>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <style type="text/css">
+            form input[type=submit] {
+                color: white;
+            }
+            form {
+                margin-left: 35%;
+                margin-top: 11%;
+            }
+            .col .row {
+                margin-right: 0rem;
+            }
+            input:-internal-autofill-selected {
+                background-color: red !important;
+                background-image: none !important;
+                color: -internal-light-dark-color(black, white) !important;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo center">Rocket RedeMob Consorcio</a>
+                <ul class="left hide-on-med-and-down">
+                    <li><a th:href="@{/aprovacaoCandidaturas}">Aprovar Candidaturas</a></li>
+                    <li class="active"><a th:href="@{/captacaoCandidato}">Obtenha seu cartão</a></li>
+                    <li><a th:href="@{/consultaCandidato}">Consulta do Candidato</a></li>
+                    <li><a th:href="@{/logout}">Deslogar</a></li>
+                </ul>
+            </div>
+        </nav><br/><br/>
+    <img style="text-align: center" src="https://media.licdn.com/dms/image/C4E16AQFKWWZql0p_sQ/profile-displaybackgroundimage-shrink_350_1400/0/1647630218966?e=1714608000&v=beta&t=pxN8BRFwrHfCVezTuly-hFohSzZ3MbcuGCmihz6WN-0" />
+    </body>
+</html>
